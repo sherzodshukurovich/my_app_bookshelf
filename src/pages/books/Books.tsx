@@ -3,10 +3,13 @@ import './books.scss'
 import {Button, Form, Input, Modal} from 'antd';
 import axios from "axios";
 import {BOOKSHELF_KEY, BOOKSHELF_SECRET, BOOKSHELF_URL} from "../../const";
-import {toast} from 'react-toastify'
 import {MD5} from 'crypto-js'
 import {DeletedBookToast, EditedToast, ErrorDataToast, ErrorToast, SuccessToast} from "../../components/AllToasts";
-const { Search } = Input;
+
+
+
+const {Search} = Input;
+
 function Books() {
     // ================ start Modal ========================
 
@@ -54,10 +57,13 @@ function Books() {
         handleCancel()
     };
     const onFinishEdit = (values: any) => {
-        axios.patch(BOOKSHELF_URL + `books/${deleteId}`, values, {
+        let newValue={
+            'status':parseInt(values.status)
+        }
+        axios.patch(BOOKSHELF_URL + `books/${deleteId}`, newValue, {
             headers: {
                 Key: localStorage.getItem(BOOKSHELF_KEY),
-                Sign: MD5('PATCH' + `/books/${deleteId}` + JSON.stringify(values) + localStorage.getItem(BOOKSHELF_SECRET)).toString()
+                Sign: MD5('PATCH' + `/books/${deleteId}` + JSON.stringify(newValue) + localStorage.getItem(BOOKSHELF_SECRET)).toString()
             }
         })
             .then((resp) => {
@@ -75,9 +81,9 @@ function Books() {
     };
     // ========== end form =================================
     useEffect(() => {
-      getAllBooks()
+        getAllBooks()
     }, [])
-    const getAllBooks=()=>{
+    const getAllBooks = () => {
         axios.get(BOOKSHELF_URL + 'books', {
             headers: {
                 Key: localStorage.getItem(BOOKSHELF_KEY),
@@ -86,6 +92,7 @@ function Books() {
         })
             .then((resp) => {
                 setAllBooks(resp.data.data)
+                console.log(resp.data.data)
             })
             .catch((error) => {
                 ErrorToast()
@@ -103,7 +110,7 @@ function Books() {
                     DeletedBookToast()
                     getAllBooks()
                 })
-                .catch((error)=>{
+                .catch((error) => {
                     ErrorToast()
                 })
         }
@@ -119,16 +126,25 @@ function Books() {
             .then((resp) => {
                 setAllBooks(resp.data.data)
             })
-            .catch((error)=>{
+            .catch((error) => {
                 getAllBooks()
                 ErrorToast()
             })
     };
+    const generateStatus = (id: any) => {
+        if (id === 0) {
+            return 'new'
+        } else if (id === 1) {
+            return 'reading'
+        } else {
+            return 'finished'
+        }
+    }
     return (
         <div>
             <div className="books-page">
                 <div className="books-search">
-                    <Search placeholder=" Search ..." onSearch={onSearch}  />
+                    <Search placeholder=" Search ..." onSearch={onSearch}/>
                 </div>
                 <div className="cards">
                     {
@@ -136,33 +152,38 @@ function Books() {
                             <div className="card">
                                 <div className="card-img">
                                     <img
-                                        src={item.book ?  item.book?.cover ? item.book.cover : '/media/icon/book.png' : item.cover ? item.cover : '/media/icon/book.png'}
+                                        src={item.book ? item.book?.cover ? item.book.cover : '/media/icon/book.png' : item.cover ? item.cover : '/media/icon/book.png'}
                                         alt=""/>
                                 </div>
                                 <div className="card-footer">
                                     <div className="book-name">
-                                        {item.book? item.book.title : item.title}
+                                        {item.book ? item.book.title : item.title}
                                     </div>
                                     <div className="book-author">
-                                        <span>Author:</span> {item.book? item.book.author: item.author}
+                                        <span>Author:</span> {item.book ? item.book.author : item.author}
                                     </div>
                                     <div className="book-published">
-                                        <span>Published:</span> {item.book? item.book.published : item.published}
+                                        <span>Published:</span> {item.book ? item.book.published : item.published}
                                     </div>
                                 </div>
                                 <div className="card-action">
                                     <div onClick={() => {
-                                        setDeleteId(item.book? item.book.id : item.id)
+                                        setDeleteId(item.book ? item.book.id : item.id)
                                         showModalDelete()
                                     }} className="icon-circle">
                                         <img src="/media/icon/icons8-delete-100.png" alt=""/>
                                     </div>
-                                    <div onClick={()=>{
-                                        setDeleteId(item.book? item.book.id : item.id)
+                                    <div onClick={() => {
+                                        setDeleteId(item.book ? item.book.id : item.id)
                                         showModalEdit()
                                     }} className="icon-circle">
                                         <img src="/media/icon/edit.png" alt=""/>
                                     </div>
+                                </div>
+                                <div className="status">
+                                    {
+                                        generateStatus(item.status)
+                                    }
                                 </div>
                             </div>
                         ))
@@ -176,7 +197,7 @@ function Books() {
                     </div>
                 </div>
             </div>
-            <Modal title="ADD NEW BOOK" open={isModalOpen} onCancel={handleCancel}>
+            <Modal width={400} footer={null} title="ADD NEW BOOK" open={isModalOpen} onCancel={handleCancel}>
                 <Form
                     name="basic"
                     labelCol={{
@@ -205,20 +226,29 @@ function Books() {
                             },
                         ]}
                     >
-                        <Input/>
+                        <Input style={{height: '44px'}}/>
                     </Form.Item>
                     <Form.Item
 
                     >
-                        <Button type="primary" htmlType="submit">
-                            <div className="key">
+                        <Button style={{
+                            borderRadius: '12px',
+                            background: 'green',
+                            justifyContent: 'center',
+                            height: '44px',
+                            width: '100%',
+                            display: 'flex',
+                            alignItems: 'center'
+                        }} type="primary" htmlType="submit">
+                            <div style={{fontWeight: '400', color: 'white', fontSize: '16px', marginLeft: '12px'}}
+                                 className="key">
                                 Save
                             </div>
                         </Button>
                     </Form.Item>
                 </Form>
             </Modal>
-            <Modal title="EDIT BOOK" open={isModalOpenEdit} onCancel={handleEdit}>
+            <Modal width={400} footer={null} title="EDIT BOOK" open={isModalOpenEdit} onCancel={handleEdit}>
                 <Form
                     name="basic"
                     labelCol={{
@@ -247,20 +277,29 @@ function Books() {
                             },
                         ]}
                     >
-                        <Input/>
+                        <Input style={{height: '44px'}}/>
                     </Form.Item>
                     <Form.Item
 
                     >
-                        <Button type="primary" htmlType="submit">
-                            <div className="key">
+                        <Button style={{
+                            borderRadius: '12px',
+                            background: 'green',
+                            justifyContent: 'center',
+                            height: '44px',
+                            width: '100%',
+                            display: 'flex',
+                            alignItems: 'center'
+                        }} type="primary" htmlType="submit">
+                            <div style={{fontWeight: '400', color: 'white', fontSize: '16px', marginLeft: '12px'}}
+                                 className="key">
                                 Edit
                             </div>
                         </Button>
                     </Form.Item>
                 </Form>
             </Modal>
-            <Modal open={isModalOpenDelete} onCancel={handleDelete}>
+            <Modal width={400} footer={null} open={isModalOpenDelete} onCancel={handleDelete}>
                 <div className="circle">
                     <img src="/media/icon/icons8-delete-100.png" alt=""/>
                 </div>
