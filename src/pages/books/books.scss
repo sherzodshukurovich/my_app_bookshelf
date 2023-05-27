@@ -1,0 +1,364 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.books-page {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background: #F8FAFC;
+  position: relative;
+  min-height: 100vh;
+
+  .books-search {
+    width: 500px;
+    margin: 40px auto;
+    :where(.css-dev-only-do-not-override-w8mnev).ant-input-group .ant-input {
+      width: 100%;
+      margin-bottom: 0;
+      text-align: inherit;
+      background: white;
+      box-shadow: none;
+      font-size: 16px;
+      font-family: 'Montserrat', sans-serif;
+      height: 48px;
+    }
+  }
+
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+
+    .card {
+      width: 23%;
+      padding: 18px;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+      margin: 15px 2% 15px 0px;
+
+      .card-img {
+        width: 100%;
+        height: 240px;
+
+
+        img {
+          width: 90%;
+          height: 240px;
+          border-radius: 12px;
+
+        }
+      }
+
+      .card-footer {
+        margin-top: 12px;
+
+        .book-name {
+          padding: 6px 0px;
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 20px;
+          color: black;
+          cursor: pointer;
+          font-family: 'Inter', sans-serif;
+        }
+
+        .book-author {
+          text-align: start;
+          padding: 12px 0px;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 20px;
+          color: #404955;
+          cursor: pointer;
+          font-family: 'Inter', sans-serif;
+
+          span {
+            font-weight: 600;
+          }
+        }
+
+        .book-published {
+          text-align: start;
+          padding: 12px 0px;
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 20px;
+          color: #757C86;
+          cursor: pointer;
+          font-family: 'Inter', sans-serif;
+
+          span {
+            font-weight: 600;
+          }
+        }
+      }
+
+      .card-action {
+        padding-top: 12px;
+        display: flex;
+        align-items: end;
+        justify-content: space-around;
+
+        .icon-circle {
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #d9d9d9;
+          cursor: pointer;
+
+          img {
+            width: 60%;
+          }
+        }
+
+        .icon-circle:hover {
+          background: #f6f6f6;
+        }
+      }
+    }
+
+    .card:nth-child(4n) {
+      margin-right: 0;
+    }
+
+
+  }
+
+  .add-books {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    cursor: pointer;
+    width: 183px;
+    height: 68px;
+    background: #FFFFFF;
+    border: 1px solid #D2D7D5;
+    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .add-text {
+      width: 157px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #34944F;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 17px;
+      letter-spacing: -0.3px;
+      color: #FFFFFF;
+    }
+
+    .add-text:hover {
+      border: 1px solid #34944F;
+      color: #34944F;
+      background: transparent;
+    }
+
+  }
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-modal .ant-modal-footer {
+  display: none;
+}
+:where(.css-dev-only-do-not-override-w8mnev).ant-input-search >.ant-input-group >.ant-input-group-addon:last-child .ant-input-search-button:not(.ant-btn-primary) {
+  color: rgba(0, 0, 0, 0.45);
+  height: 48px;
+  width: 55px;
+}
+:where(.css-dev-only-do-not-override-w8mnev).ant-modal .ant-modal-title {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.88);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  font-family: 'Inter', sans-serif;
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-form-item .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  display: none;
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-form-item .ant-form-item-label > label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+  color: #757C86;
+  padding: 0;
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-input, :where(.css-dev-only-do-not-override-w8mnev).ant-input-affix-wrapper {
+  width: 100%;
+  height: 48px;
+  background: #F8FAFC;
+  border: 1px solid #E2E6EC;
+  border-radius: 12px;
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-input-affix-wrapper > input.ant-input {
+  padding: 0;
+  font-size: inherit;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  height: 34px;
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-modal .ant-modal-title {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.88);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-btn-primary {
+  color: #fff;
+  box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+  width: 100%;
+  height: 48px;
+  background: #02b736;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+
+  .key {
+    margin-left: 12px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    color: #FFFFFF;
+  }
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-modal .ant-modal-content {
+  position: relative;
+  background-color: #ffffff;
+  background-clip: padding-box;
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  pointer-events: auto;
+  width: 400px;
+  padding: 20px 24px;
+}
+
+:where(.css-dev-only-do-not-override-w8mnev).ant-btn-primary:not(:disabled):hover {
+  color: #fff;
+  box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+  height: 44px;
+  background: #00AE30;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .key {
+    margin-left: 12px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    color: #FFFFFF;
+  }
+}
+
+.description {
+  font-size: 16px;
+  text-align: center;
+  color: #282c34;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  margin: 25px 0px;
+}
+
+.footer-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 25px;
+
+  .cancel {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    background: red;
+    cursor: pointer;
+    width: 44%;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    transition: 0.4s;
+  }
+
+  .cancel:hover {
+    color: red;
+    border: 1px solid red;
+    background: white;
+    transition: 0.4s;
+  }
+
+  .success {
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    background: #00AE30;
+    cursor: pointer;
+    width: 44%;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    transition: 0.4s;
+  }
+
+  .success:hover {
+    color: #00AE30;
+    border: 1px solid #00AE30;
+    background: white;
+    transition: 0.4s;
+  }
+}
+
+.circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f6f6;
+
+  img {
+    width: 60%;
+  }
+
+}

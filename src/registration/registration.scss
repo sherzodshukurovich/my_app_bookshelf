@@ -1,0 +1,103 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.registration-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .registration-card {
+    gap: 24px;
+    width: 439px;
+    height: 595px;
+    padding: 24px;
+    background: #FFFFFF;
+    border-radius: 24px;
+    border: 1px solid rgba(5, 30, 44, 0.2);
+
+    .name {
+      font-family: 'Bitter', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 120%;
+      margin: 15px auto;
+      color: #404955;
+    }
+  }
+}
+:where(.css-dev-only-do-not-override-w8mnev).ant-form-item .ant-form-item-label >label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  display: none;
+}
+:where(.css-dev-only-do-not-override-w8mnev).ant-form-item .ant-form-item-label >label{
+  font-family: 'Inter',sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+  color: #757C86;
+  padding: 0;
+}
+:where(.css-dev-only-do-not-override-w8mnev).ant-input ,:where(.css-dev-only-do-not-override-w8mnev).ant-input-affix-wrapper{
+  width:100%;
+  height: 42px;
+  background: #F8FAFC;
+  border: 1px solid #E2E6EC;
+  border-radius: 12px;
+}
+:where(.css-dev-only-do-not-override-w8mnev).ant-input-affix-wrapper >input.ant-input {
+  padding: 0;
+  font-size: inherit;
+  border: none;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+  height: 34px;
+}
+:where(.css-dev-only-do-not-override-w8mnev).ant-btn-primary {
+  color: #fff;
+  box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+  width: 100%;
+  height: 44px;
+  background: #02b736;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  .key{
+    margin-left: 12px;
+    font-family: 'Inter',sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    color: #FFFFFF;
+  }
+}
+:where(.css-dev-only-do-not-override-w8mnev).ant-btn-primary:not(:disabled):hover{
+  color: #fff;
+  box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+  width: 100%;
+  height: 44px;
+  background: #00AE30;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .key{
+    margin-left: 12px;
+    font-family: 'Inter',sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    color: #FFFFFF;
+  }
+}
+
